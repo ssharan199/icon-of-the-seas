@@ -106,10 +106,14 @@ const args = [
   '-i', join(FRAME_DIR, 'f%05d.jpg'),
   '-i', AUDIO,
   '-vf', 'scale=1080:1920:flags=lanczos',
-  '-c:v', 'libx264', '-preset', 'slow', '-crf', '18',
+  // CRF 24 under a ceiling, not CRF 18: the reel has to travel through chat,
+  // which rejects anything over 30 MB. CRF 18 came out at 57 MB and bounced.
+  // This lands near 19 MB for 40 s, and the difference does not show on a phone.
+  '-c:v', 'libx264', '-preset', 'slow', '-crf', '24',
+  '-maxrate', '6M', '-bufsize', '12M',
   '-pix_fmt', 'yuv420p',
   '-profile:v', 'high', '-level', '4.1',
-  '-c:a', 'aac', '-b:a', '192k',
+  '-c:a', 'aac', '-b:a', '160k',
   '-shortest',
   '-movflags', '+faststart',
   out
