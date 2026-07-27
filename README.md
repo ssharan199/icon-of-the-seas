@@ -6,8 +6,6 @@ runtime from 74 station curves and everything above it is written as code.
 
 The finished vertical reel is in [`reel/`](reel/).
 
-**Picking this up in a new session? Read [`HANDOFF.md`](HANDOFF.md) first** — it
-has the whole state of the project, what is still open, and how to render.
 
 ## Assembly Console
 
